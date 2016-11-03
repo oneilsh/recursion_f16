@@ -1,3 +1,4 @@
+#### Nov. 3, 2016
 ## Recursion and Dynamic Programming workshop, Fall 2016
 
 Since my computer is being a bit flaky currently, I think I'll go the "easy" way out and use a github repo as the class website. There are a few advantages and disadvantages to this--we'll have to take em as we get em. 
