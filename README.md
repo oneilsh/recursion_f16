@@ -1,3 +1,23 @@
+
+#### Nov. 4, 2016
+## Workshop Description
+
+* Times: Mon/Wed/Fri @ 9am - 10am, Nov. 7 to Dec. 2 
+* No meeting Fri Nov. 25 [Thanksgiving], nor Fri Nov. 11 [Veterans Day]
+* Location: Kearney 305 (probably)
+* TA: None
+* Textbook: None (yet)
+* Office Hours: Generally after class, and by appt.
+
+Description: 
+
+This course explores and implements several problem-solving techniques that are related and particularly beautiful: recursion, (self-referential processes), dynamic programming (guided deconstruction of problems into subproblems), and induction (the mathematical proof technique). After some practice with basic recursive methods (the Fibonacci sequence and predator-prey recurrence relations), we'll cover variations of the sequence-alignment problem from multiple perspectives, including the local heuristic used by BLAST.
+
+Topics covered along the way include memoization, dynamic programming, proofs by contradiction, and data structures like lists, hash tables, stacks, trees, and the call stack. Finally, we'll explore graphical modeling of plants with L-system fractals and if time allows other applications that utilize recursion and dynamic programming (e.g. Hidden Markov Models).
+
+
+
+
 #### Nov. 3, 2016
 ## Recursion and Dynamic Programming workshop, Fall 2016
 
