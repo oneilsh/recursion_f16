@@ -1,3 +1,10 @@
+#### Nov. 7, 2016
+## Functions, lists, etc.
+
+Here's the code we wrote in class today: https://github.com/oneilsh/recursion_f16/commit/7668e60eca3f920479fec828a1d5cd456d6399eb
+
+**Easy Question:** Without writing any code, try to figure what would happen if `print(el)` was called *after* `print_list(rest)` in the `print_list()` function. Try it in code, and describe in some detail what happens and why.
+
 
 #### Nov. 4, 2016
 ## Workshop Description
