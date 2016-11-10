@@ -1,9 +1,39 @@
+#### Nov. 9, 2016
+## More recursion on lists, binary trees
+
+*Note:* I've figured out what ya'll will have to do to earn a certificate for this workshop: As we go along, every day I will post some "easyish" questions, and in a about a week start mixing in some "difficultish" questions. You'll need to complete 10 easyish questions, and 2 difficultish questions.
+
+Here's the code we wrote in class: https://github.com/oneilsh/recursion_f16/commit/71526faebb3fc43b412ee2a754ba8869d431596a
+
+**Easyish Question:** Write a recursive `get_smallest_in_tree()` function which returns the smallest element from a binary search tree.
+
+**Easyish Question:** Modify the `insert_tree()` function so that no duplicate items can be inserted; if the user attempts to add a duplicate item, print a warning with  `warning("Sorry, ", new_el, " is a duplicate element.")`. In this case the original tree should be returned. That is,
+
+```
+t <- NULL
+t <- insert_tree(t, "A")
+t <- insert_tree(t, "B")
+t <- insert_tree(t, "C")
+print_tree(t)
+```
+
+should print A, B, and C, and then 
+
+```
+t <- insert_tree(t, "B")
+print_tree(t)
+```
+
+should result in a warning and again print A, B, C.
+
+
+
 #### Nov. 7, 2016
 ## Functions, lists, etc.
 
 Here's the code we wrote in class today: https://github.com/oneilsh/recursion_f16/commit/7668e60eca3f920479fec828a1d5cd456d6399eb
 
-**Easy Question:** Without writing any code, try to figure what would happen if `print(el)` was called *after* `print_list(rest)` in the `print_list()` function. Try it in code, and describe in some detail what happens and why.
+**Easyish Question:** Without writing any code, try to figure what would happen if `print(el)` was called *after* `print_list(rest)` in the `print_list()` function. Try it in code, and describe in some detail what happens and why.
 
 
 #### Nov. 4, 2016
