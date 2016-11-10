@@ -73,7 +73,7 @@ while(!is.null(data)) {
 # works because of local variables!
 print_list <- function(data) {
   if(is.null(data)) {
-    return()
+    return(invisible())
   } 
   el <- data[[1]]
   rest <- data[[2]]
@@ -82,3 +82,97 @@ print_list <- function(data) {
 }
 
 print_list(chars)
+
+
+# I figured out how to get a function to return nothing
+# and not cause the returned NULL to be printed!
+afunc <- function(data) {
+  return(invisible())
+}
+
+afunc(1)
+
+# Here's a cool one: use recursion to get the i'th element from a nested list
+get_ith <- function(data, i) {
+  if(is.null(data)) {
+    return(NA)
+  }
+  el <- data[[1]]
+  rest <- data[[2]]
+  if(i == 1) {
+    return(el)
+  } 
+  answer <- get_ith(rest, i - 1)
+  return(answer)
+}
+
+print("printing third item")
+print(get_ith(chars, 3))
+print("printing 7th item")
+print(get_ith(chars, 7))   # prints NA
+
+# How about appending to the end of a nested list, and returning an updated copy?
+append_end <- function(data, new_el) {
+  if(is.null(data)) {
+    return(list(new_el, NULL))
+  }
+  el <- data[[1]]
+  rest <- data[[2]]
+  new_rest <- append_end(rest, new_el)
+  return(list(el, new_rest))
+}
+
+print("printing chars5 nested list")
+chars5 <- append_end(chars, "Q")
+print_list(chars5)
+
+
+
+# Binary search tree!
+chars4 <- list(list(NULL, "A", NULL), 
+              "C", 
+              list(list(NULL, "D", NULL), 
+                   "F", 
+                   NULL))
+
+# print all the elements in order
+print_tree <- function(data) {
+  if(is.null(data)) {
+    return(invisible())
+  }
+  left <- data[[1]]
+  el <- data[[2]]
+  right <- data[[3]]
+  print_tree(left)
+  print(el)
+  print_tree(right)
+}
+
+print("printing chars4 tree")
+print_tree(chars4)
+
+
+# inserting a new element in the right spot, based on the rules
+insert_tree <- function(data, new_el) {
+  if(is.null(data)) {
+    return(list(NULL, new_el, NULL))
+  }
+  
+  left <- data[[1]]
+  el <- data[[2]]
+  right <- data[[3]]
+  
+  if(new_el < el) {
+    new_left <- insert_tree(left, new_el)
+    return(list(new_left, el, right))
+  } else {
+    new_right <- insert_tree(right, new_el)
+    return(list(left, el, new_right))
+  }
+}
+
+print("printing chars5 tree")
+chars5 <- insert_tree(chars4, "B")
+print_tree(chars5)
+
+
