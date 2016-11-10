@@ -1,7 +1,7 @@
 #### Nov. 9, 2016
 ## More recursion on lists, binary trees
 
-*Note:* I've figured out what ya'll will have to do to earn a certificate for this workshop: As we go along, every day I will post some "easyish" questions, and in a about a week start mixing in some "difficultish" questions. You'll need to complete 10 easyish questions, and 2 difficultish questions.
+**_Note:_** I've figured out what ya'll will have to do to earn a certificate for this workshop: As we go along, every day I will post some "easyish" questions, and in a about a week start mixing in some "difficultish" questions. You'll need to complete 10 easyish questions, and 2 difficultish questions.
 
 Here's the code we wrote in class: https://github.com/oneilsh/recursion_f16/commit/71526faebb3fc43b412ee2a754ba8869d431596a
 
