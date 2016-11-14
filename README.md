@@ -1,3 +1,21 @@
+#### Nov. 14, 2016
+## BST efficiency, Induction, Fibonacci/Bees, Stacks
+
+Binary search trees are cool, "balanced" binary search trees are even cooler, as
+they keep themselves, well, balanced. Here's a nice implementation of a Red-Black Tree
+in R: https://github.com/tarakc02/rbst (what can I say, I like it because he cites me).
+What is (as usual) interesting about these is that they are proved to stay in balance,
+thus gauranteeing efficiecy. The proof is, you guessed it, based on structural induction. 
+
+Code written for today: https://github.com/oneilsh/recursion_f16/commit/9ebd7052c4d588a2e07d0f7a641a371d65a695b4
+
+**Easyish question:** Implement a stack by writing `insert_top()`, `without_top()`, and `peek_top()` for on  nested-list structure we explored. These functions should be pure (ie, side-effect-free), and
+shouldn't need to use either loops or recursion (thus allowing them to be the same speed no matter how big it is).
+
+**Easyish question:** Consider binary trees of the type we've been talking about. Prove (using structural  induction) that the number of nodes in such a tree is always odd. [You can consider the `NULL` values nodes or not, it won't make a difference.]
+
+
+
 #### Nov. 9, 2016
 ## More recursion on lists, binary trees
 
