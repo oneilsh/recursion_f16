@@ -102,3 +102,48 @@ easy_case <- function(a_in, b_in) {
 str(easy_case(c(""), c("", "T", "C")))
 str(easy_case(c("", "T", "C"), c("")))
 
+global_aln <- function(a_in, b_in) {
+  if(length(a_in) == 1 | length(b_in) == 1) {
+    answer <- easy_case(a_in, b_in)
+    return(answer)
+  }
+  
+  pa <- a_in[1:(length(a_in) - 1)]
+  ea <- a_in[length(a_in)]
+  pb <- b_in[1:(length(b_in) - 1)]
+  eb <- b_in[length(b_in)]
+  
+  left <- global_aln(pa, b_in)
+  center <- global_aln(pa, pb)
+  right <- global_aln(a_in, pb)
+  
+  left_answer <- list(a = a_in, b = b_in,
+                      a_aln = c(left$a_aln, ea),
+                      b_aln = c(left$b_aln, "-"),
+                      score = left$score + score_pair(ea, "-"))
+  center_answer <- list(a = a_in, b = b_in,
+                      a_aln = c(center$a_aln, ea),
+                      b_aln = c(center$b_aln, eb),
+                      score = center$score + score_pair(ea, eb))
+  right_answer <- list(a = a_in, b = b_in,
+                        a_aln = c(right$a_aln, "-"),
+                        b_aln = c(right$b_aln, eb),
+                        score = right$score + score_pair("-", eb))
+
+
+  best_answer <- left_answer
+  if(center_answer$score > best_answer$score) {
+    best_answer <- center_answer
+  }
+  if(right_answer$score > best_answer$score) {
+    best_answer <- right_answer
+  }
+  
+  return(best_answer)
+}
+
+a <- char_vec("TATCG", prepend = "")
+b <- char_vec("TTCGT", prepend = "")
+best <- global_aln(a, b)
+print(best)
+
