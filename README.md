@@ -56,7 +56,7 @@ the recursive method uses to compute them:
  20 6765 13529
 ```
 
-Define an equation for *calls* in terms of *fibn* (e.g., *calls(n) = 2\*fib(n)*, though this isn't *quite* correct). Prove that your equation is correct (using induction).
+Define an equation for *calls* in terms of *fibn* (e.g., *calls(n) = 2 fib(n)*, though this isn't *quite* correct). Prove that your equation is correct (using induction).
 
 #### Nov. 14, 2016
 ## BST efficiency, Induction, Fibonacci/Bees, Stacks
