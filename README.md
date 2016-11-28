@@ -1,16 +1,27 @@
 
-#### Nov. 28, 2016
-## Seq. Alignment Memoization, Cache Inspection
+## Seq. Alignment Memoization, Cache Inspection (Nov. 28)
 
 Memoization additions: https://github.com/oneilsh/recursion_f16/commit/e608d4ee73d9f011830c9f79556cbb6bd7250d28
 Visualization additions: https://github.com/oneilsh/recursion_f16/commit/dcba679575ab6c47e8c798e0240e4cf715b30383
 
+**Easyish question:** Suppose we wanted to do a "multi-alignment" of three sequences, `a`, `b`, and
+`c`. What are the ways such an alignment could end? (Hint, there are 7 of them, rather than the 3 we considered for 2-way alignment). What would the analygous "easy" cases be?
+
+**Easyish question:** How many different "ending" cases are there for 4-way alignment? What about *k*-way?
+
+**Difficultish question:** The scoring rules for 3-way alignment are basically `score_aln(a_aln, b_aln) + score_aln(b_aln, c_aln) + score_aln(c_aln, a_aln)`; i.e., we add up the various 2-way scores. Implement a recursive, memoized 3-way alignment. 
+
+**Easyish question (if you did the difficultish one above), or Difficultish (if not):** How does the size of the memoization cache (and thus the run time of the method) relate to `length(a)`, `length(b)`, and `length(c)`? What about if we wanted to implement 4-way, 5-way, or in general *k*-way alignment?
 
 
-#### Nov. 23, 2016
-## Proofs by Contradiction, Proof & Implementation of Recursive Alignment
+
+
+## Proofs by Contradiction, Proof & Implementation of Recursive Alignment (Nov. 23)
 
 Code: https://github.com/oneilsh/recursion_f16/commit/14febfc8e1e693db2ab1d065556b93baf848784e
+
+**Easyish question:** Add a `CALL_COUNTER` to the `global_aln()` (recursive, non-memoized) function,
+and plot how `CALL_COUNTER` relates to input sequences `a` and `b` of lengths ranging from 2 through 8.
 
 **Easyish question:** (Well, somewhere in between easyish and hardish, actually.) When aligning
 two sequences, one of length *m* and one of length *n*, how deep does the call stack get in terms
@@ -26,27 +37,25 @@ His task is to visit all of the flowers, but being a busy bee he wants to take t
 Prove (perhaps by contradiction...) that when he does figure out the shortest path, it *won't cross itself*. (This is an example of a [hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) problem situated in geometric/Euclidean space. The hamiltonian path problem on a network/graph has been used extensively in the area of [genome assembly](http://bib.oxfordjournals.org/content/10/4/354.full)).
 
 
-#### Nov. 21, 2016
-## Seq. Alignment Easy Cases & Recursive Definition
+## Seq. Alignment Easy Cases & Recursive Definition (Nov. 21)
 
 Code: https://github.com/oneilsh/recursion_f16/commit/a0b867b9bdb4990e5e94dbb6fec3dcf57c091d61
 
-**Easyish question:** 
+Feel free to explore the code and propose your own "easyish" or "difficultish" questions :)
 
 
 
-
-
-#### Nov. 18, 2016
-## Hash Tables, Memoization, Dynamic Programming, Order Notation
+## Hash Tables, Memoization, Dynamic Programming, Order Notation (Nov. 18)
 
 Code: https://github.com/oneilsh/recursion_f16/commit/49f13b923b78a9fa3cf63cafc7b5185488c76cfa
 
 **Easyish question:** Douglas Hofstadter's "Q-Sequence" is defined recursively:
 
-Q(1) = 1
-Q(2) = 1
-Q(n) = Q(n - Q(n - 1)) + Q(n - Q(n-2))
+*Q(1) = 1*
+
+*Q(2) = 1*
+
+*Q(n) = Q(n - Q(n - 1)) + Q(n - Q(n-2))*
 
 Compute the first 1,000 Q-numbers, and plot them (n on x-axis, Q(n) on y axis, with a line).
 
@@ -84,8 +93,7 @@ Using this info, and lists within lists (potentially within lists...), implement
 
 
 
-#### Nov. 16, 2016
-## The Call Stack, Memoization Intro
+## The Call Stack, Memoization Intro (Nov. 16)
 
 Code: https://github.com/oneilsh/recursion_f16/commit/f4fb19e196afdacc74ac0c8157ff39f802cbc899
 
@@ -124,8 +132,7 @@ Define an equation for *calls* in terms of *fibn* (e.g., *calls(n) = 2 fib(n)*, 
 
 
 
-#### Nov. 14, 2016
-## BST efficiency, Induction, Fibonacci/Bees, Stacks
+## BST efficiency, Induction, Fibonacci/Bees, Stacks (Nov. 14)
 
 Binary search trees are cool, "balanced" binary search trees are even cooler, as
 they keep themselves, well, balanced. Here's a nice implementation of a Red-Black Tree
@@ -142,8 +149,7 @@ shouldn't need to use either loops or recursion (thus allowing them to be the sa
 
 
 
-#### Nov. 9, 2016
-## More recursion on lists, binary trees
+## More Recursion on Lists, Binary Trees (Nov. 9)
 
 **_Note:_** I've figured out what ya'll will have to do to earn a certificate for this workshop: As we go along, every day I will post some "easyish" questions, and in a about a week start mixing in some "difficultish" questions. You'll need to complete 10 easyish questions, and 2 difficultish questions.
 
@@ -174,16 +180,14 @@ should result in a warning and again print A, B, C.
 
 
 
-#### Nov. 7, 2016
-## Functions, lists, etc.
+## Functions, Lists, Etc. (Nov. 7)
 
 Here's the code we wrote in class today: https://github.com/oneilsh/recursion_f16/commit/7668e60eca3f920479fec828a1d5cd456d6399eb
 
 **Easyish Question:** Without writing any code, try to figure what would happen if `print(el)` was called *after* `print_list(rest)` in the `print_list()` function. Try it in code, and describe in some detail what happens and why.
 
 
-#### Nov. 4, 2016
-## Workshop Description
+## Workshop Description (Nov. 4)
 
 * Times: Mon/Wed/Fri @ 9am - 10am, Nov. 7 to Dec. 2 
 * No meeting Fri Nov. 25 [Thanksgiving], nor Fri Nov. 11 [Veterans Day]
@@ -201,8 +205,7 @@ Topics covered along the way include memoization, dynamic programming, proofs by
 
 
 
-#### Nov. 3, 2016
-## Recursion and Dynamic Programming workshop, Fall 2016
+## Recursion and Dynamic Programming workshop, Fall 2016 (Nov. 3)
 
 Since my computer is being a bit flaky currently, I think I'll go the "easy" way out and use a github repo as the class website. There are a few advantages and disadvantages to this--we'll have to take em as we get em. 
 
