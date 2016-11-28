@@ -2,6 +2,7 @@
 ## Seq. Alignment Memoization, Cache Inspection (Nov. 28)
 
 Memoization additions: https://github.com/oneilsh/recursion_f16/commit/e608d4ee73d9f011830c9f79556cbb6bd7250d28
+
 Visualization additions: https://github.com/oneilsh/recursion_f16/commit/dcba679575ab6c47e8c798e0240e4cf715b30383
 
 **Easyish question:** Suppose we wanted to do a "multi-alignment" of three sequences, `a`, `b`, and
