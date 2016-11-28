@@ -1,6 +1,7 @@
 library(stringr)
 library(hash)
 library(rstackdeque)
+library(ggplot2)
 
 # utility functions
 ############################
@@ -85,9 +86,10 @@ easy_case <- function(a_in, b_in) {
     answer$a_aln <- c("")
     answer$b_aln <- c("")
   } else if(length(a_in) == 1) {  # e.g. a = "", b = "", "T", "C"
-    answer$b_aln <- b_in
     answer$a_aln <- rep("-", length(b_in))
     answer$a_aln[1] <- ""
+    # named elements should always be added in the same order so all answer lists have the same structure
+    answer$b_aln <- b_in
   } else if(length(b_in) == 1) {
     answer$a_aln <- a_in
     answer$b_aln <- rep("-", length(a_in))
@@ -97,6 +99,8 @@ easy_case <- function(a_in, b_in) {
   }
   
   answer$score <- score_aln(answer$a_aln, answer$b_aln)
+  answer$from_a <- a_in
+  answer$from_b <- b_in
   return(answer)
 }
 
@@ -129,15 +133,21 @@ global_aln <- function(a_in, b_in) {
   left_answer <- list(a = a_in, b = b_in,
                       a_aln = c(left$a_aln, ea),
                       b_aln = c(left$b_aln, "-"),
-                      score = left$score + score_pair(ea, "-"))
+                      score = left$score + score_pair(ea, "-"),
+                      from_a = left$a,
+                      from_b = left$b)
   center_answer <- list(a = a_in, b = b_in,
                       a_aln = c(center$a_aln, ea),
                       b_aln = c(center$b_aln, eb),
-                      score = center$score + score_pair(ea, eb))
+                      score = center$score + score_pair(ea, eb),
+                      from_a = center$a,
+                      from_b = center$b)
   right_answer <- list(a = a_in, b = b_in,
                         a_aln = c(right$a_aln, "-"),
                         b_aln = c(right$b_aln, eb),
-                        score = right$score + score_pair("-", eb))
+                        score = right$score + score_pair("-", eb),
+                        from_a = right$a,
+                        from_b = right$b)
 
 
   best_answer <- left_answer
@@ -156,10 +166,62 @@ global_aln <- function(a_in, b_in) {
 
 
 CACHE <<- hash()
-a <- char_vec("TATCGTCAGCCTAGCCT", prepend = "")
-b <- char_vec("TTCGTTACCGCCTA", prepend = "")
+a <- char_vec("TATCTGCAACGA", prepend = "")
+b <- char_vec("TTGTGC", prepend = "")
 best <- global_aln(a, b)
 print(best)
 
-print(CACHE[["TATCG,TTC"]])
+
+print(CACHE[["TATCT,TTG"]])
+
+
+
+# converts the values of a hash (assuming they are
+# lists of the same structure) into rows of a data frame
+hash_vals_to_df <- function(thehash) {
+  tempstack <- rstack()
+  
+  for(key in keys(thehash)) {
+    answer_list <- thehash[[key]]
+    
+    # unvec_char all character vectors
+    for(i in seq(1, length(answer_list))) {
+      if(is.character(answer_list[[i]])) {
+        answer_list[[i]] <- unvec_char(answer_list[[i]])
+      }
+    }
+    tempstack <- insert_top(tempstack, answer_list)
+  }
+  return(as.data.frame(tempstack, stringsAsFactors = FALSE))
+}
+
+
+cache_df <- hash_vals_to_df(CACHE)
+print(head(cache_df))
+
+
+
+p <- ggplot(cache_df) +
+  geom_tile(aes(x = reorder(a, nchar(a)), 
+                y = reorder(b, -1*nchar(b)),
+                fill = score)) +
+  geom_text(aes(x = a, y = b, label = score)) +
+  geom_segment(aes(x = a, y = b,
+                   xend = from_a, yend = from_b),
+               arrow = arrow(length = unit(0.4, "cm")),
+               position = position_jitter(width = 0.1, height = 0.1),
+               color = "red") +
+  coord_equal() +
+  scale_x_discrete(name = "a Input") +
+  scale_y_discrete(name = "b Input") +
+  scale_fill_continuous(name = "Optimal Score") +
+  theme_bw(14) +
+  theme(axis.text.x = element_text(angle = 25, hjust = 1)) 
+plot(p)
+
+
+
+
+
+
 
