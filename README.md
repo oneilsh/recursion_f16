@@ -24,10 +24,21 @@ Code: https://github.com/oneilsh/recursion_f16/commit/a0b867b9bdb4990e5e94dbb6fe
 
 Code: https://github.com/oneilsh/recursion_f16/commit/49f13b923b78a9fa3cf63cafc7b5185488c76cfa
 
+**Difficultish question:** Suppose we want to implement a hash table. The ``library(openssl)``
+library includes some of the functions needed; for example, if `"joe"` is the key we want to hash with,
+`sha1("joe")` will return a pseudo-random number based on it in hexadecimal format. We can convert
+it to a large decimal number with `bignum(sha1("joe"), hex = TRUE)`. Further, 104729 is a large
+prime number. We can get the "hash bucket" of `"joe"` by getting the modulus value of `"joe"`s large
+number as: `bignum(sha1("joe"), hex = TRUE) %% bignum(104729)`. 
+
+Using this info, and lists within lists (potentially within lists...), implement a hash table as a set of functions. For example `newhash <- myhash()` should return a new hash, `updated_hash <- insert_into_myhash(newhash, "joe", 34)` should store the value 34 at the key "joe", and `print(get_value_myhash(newhash, "joe"))` should print the value 34. 
+
 #### Nov. 16, 2016
 ## The Call Stack, Memoization Intro
 
 Code: https://github.com/oneilsh/recursion_f16/commit/f4fb19e196afdacc74ac0c8157ff39f802cbc899
+
+**Easyish question:** Write code to determine how many stack frames can be allocated in your instance of R until you get an "infinite recursion" error. Does it change depending on the "size" of the stack frames? (That is, can you recurse deeper if there are fewer and smaller local variables vs many large ones per call?)
 
 **Difficultish question:** Here's a table of the first 20 Fibonacci numbers, and the number of calls
 the recursive method uses to compute them:
@@ -56,7 +67,7 @@ the recursive method uses to compute them:
  20 6765 13529
 ```
 
-Define an equation for *calls* in terms of *fibn* (e.g., *calls(n) = 2 fib(n)*, though this isn't *quite* correct). Prove that your equation is correct (using induction).
+Define an equation for *calls* in terms of *fibn* (e.g., *calls(n) = 2 fib(n)*, though this isn't quite correct). Prove that your equation is correct (using induction).
 
 #### Nov. 14, 2016
 ## BST efficiency, Induction, Fibonacci/Bees, Stacks
