@@ -1,3 +1,63 @@
+
+#### Nov. 28, 2016
+## Seq. Alignment Memoization, Cache Inspection
+
+Memoization additions: https://github.com/oneilsh/recursion_f16/commit/e608d4ee73d9f011830c9f79556cbb6bd7250d28
+Visualization additions: https://github.com/oneilsh/recursion_f16/commit/dcba679575ab6c47e8c798e0240e4cf715b30383
+
+
+
+#### Nov. 23, 2016
+## Proofs by Contradiction, Proof & Implementation of Recursive Alignment
+
+Code: https://github.com/oneilsh/recursion_f16/commit/14febfc8e1e693db2ab1d065556b93baf848784e
+
+#### Nov. 21, 2016
+## Seq. Alignment Easy Cases & Recursive Definition
+
+Code: https://github.com/oneilsh/recursion_f16/commit/a0b867b9bdb4990e5e94dbb6fec3dcf57c091d61
+
+
+
+#### Nov. 18, 2016
+## Hash Tables, Memoization, Dynamic Programming, Order Notation
+
+Code: https://github.com/oneilsh/recursion_f16/commit/49f13b923b78a9fa3cf63cafc7b5185488c76cfa
+
+#### Nov. 16, 2016
+## The Call Stack, Memoization Intro
+
+Code: https://github.com/oneilsh/recursion_f16/commit/f4fb19e196afdacc74ac0c8157ff39f802cbc899
+
+**Difficultish question:** Here's a table of the first 20 Fibonacci numbers, and the number of calls
+the recursive method uses to compute them:
+
+```
+  n fibn calls
+  1    1     1
+  2    1     1
+  3    2     3
+  4    3     5
+  5    5     9
+  6    8    15
+  7   13    25
+  8   21    41
+  9   34    67
+ 10   55   109
+ 11   89   177
+ 12  144   287
+ 13  233   465
+ 14  377   753
+ 15  610  1219
+ 16  987  1973
+ 17 1597  3193
+ 18 2584  5167
+ 19 4181  8361
+ 20 6765 13529
+```
+
+Define an equation for *calls* in terms of *fibn* (e.g., *calls(n) = 2\*fib(n)*, though this isn't *quite* correct). Prove that your equation is correct (using induction).
+
 #### Nov. 14, 2016
 ## BST efficiency, Induction, Fibonacci/Bees, Stacks
 
