@@ -1,4 +1,6 @@
 library(stringr)
+library(hash)
+library(rstackdeque)
 
 # utility functions
 ############################
@@ -103,8 +105,15 @@ str(easy_case(c(""), c("", "T", "C")))
 str(easy_case(c("", "T", "C"), c("")))
 
 global_aln <- function(a_in, b_in) {
+  key <- str_c(unvec_char(a_in), ",", unvec_char(b_in))
+  if(has.key(key, CACHE)) {
+    return(CACHE[[key]])
+  }
+  
   if(length(a_in) == 1 | length(b_in) == 1) {
     answer <- easy_case(a_in, b_in)
+    answer$cache_el_num <- length(CACHE) + 1
+    CACHE[[key]] <<- answer
     return(answer)
   }
   
@@ -139,11 +148,18 @@ global_aln <- function(a_in, b_in) {
     best_answer <- right_answer
   }
   
+  best_answer$cache_el_num <- length(CACHE) + 1
+  CACHE[[key]] <<- best_answer
   return(best_answer)
 }
 
-a <- char_vec("TATCG", prepend = "")
-b <- char_vec("TTCGT", prepend = "")
+
+
+CACHE <<- hash()
+a <- char_vec("TATCGTCAGCCTAGCCT", prepend = "")
+b <- char_vec("TTCGTTACCGCCTA", prepend = "")
 best <- global_aln(a, b)
 print(best)
+
+print(CACHE[["TATCG,TTC"]])
 
