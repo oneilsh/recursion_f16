@@ -1,4 +1,16 @@
 
+
+## Sequence Alignment, Dynamic Program (Nov. 30)
+
+Code: https://github.com/oneilsh/recursion_f16/commit/f2658a3bb0d2884a94e74ac0d4aa84dc5cffaf75
+
+Here's a version where I added row and column names to the tables based on the sequences, just for fun: https://github.com/oneilsh/recursion_f16/commit/4a44b859ad165e9f42977728ac658daf8e1d9288
+
+**Easyish question:** What would the dynamic programming "table" look like for the 3-way alignment discussed below?
+
+
+
+
 ## Seq. Alignment Memoization, Cache Inspection (Nov. 28)
 
 Memoization additions: https://github.com/oneilsh/recursion_f16/commit/e608d4ee73d9f011830c9f79556cbb6bd7250d28
