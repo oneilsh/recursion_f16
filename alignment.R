@@ -223,5 +223,98 @@ plot(p)
 
 
 
+global_aln_dp <- function(a_in, b_in) {
+  # create tables of the right size
+  score <- matrix(0, nrow = length(b_in), ncol = length(a_in))
+  from <- matrix("?", nrow = length(b_in), ncol = length(a_in))
+  
+  # build gap scores along top row
+  row <- 1
+  for(col in seq(2, ncol(score))) {
+    score[row,col] <- score[row, col-1] + score_pair("-", a_in[col])
+    from[row, col] <- "left"
+  }
+  
+  # build gap scores along left col
+  col <- 1
+  for(row in seq(2, nrow(score))) {
+    score[row,col] <- score[row-1, col] + score_pair(b_in[row], "-")
+    from[row, col] <- "up"
+  }
+  
+  # fill in the rest of the table
+  for(row in seq(2, nrow(score))) {
+    for(col in seq(2, ncol(score))) { # this was accidentally nrow(score), whoooops
+      # three potential scores for this cell
+      leftscore <- score[row, col-1] + score_pair(b_in[row], "-")
+      diagscore <- score[row-1, col-1] + score_pair(b_in[row], a_in[col])
+      upscore <- score[row-1, col] + score_pair("-", a_in[col])
+      
+      # we want the best, and to set the "from" info based on that
+      bestscore <- leftscore
+      bestfrom <- "left"
+      if(diagscore > bestscore) {
+        bestscore <- diagscore
+        bestfrom <- "diag"
+      }
+      
+      if(upscore > bestscore) {
+        bestscore <- upscore
+        bestfrom <- "up"
+      }
+      
+      score[row,col] <- bestscore
+      from[row,col] <- bestfrom
+      
+    }
+  }
+  
+  # start in the lower-right
+  currentrow <- nrow(score)
+  currentcol <- ncol(score)
+  # we'll build our alignment in two stacks for convenience
+  a_aln <- rstack()
+  b_aln <- rstack()
+  final_score <- score[currentrow, currentcol]
+  
+  # while we're not done....
+  while(currentrow != 1 & currentcol != 1) {
+    arrow <- from[currentrow, currentcol]
+    if(arrow == "left") {
+      a_aln <- insert_top(a_aln, a_in[currentcol])
+      b_aln <- insert_top(b_aln, "-")
+      currentcol <- currentcol - 1
+    } else if(arrow == "diag") {
+      a_aln <- insert_top(a_aln, a_in[currentcol])
+      b_aln <- insert_top(b_aln, b_in[currentrow])
+      currentcol <- currentcol - 1
+      currentrow <- currentrow - 1
+    } else {
+      a_aln <- insert_top(a_aln, "-")
+      b_aln <- insert_top(b_aln, b_in[currentrow])
+      currentrow <- currentrow - 1
+    }
+  }
+  
+  # just for fun, let's see the tables
+  print(score)
+  print(from)
+  
+  # pull the alignment out of the stacks and put in
+  # an R character vector, inside an answer list
+  answer <- list(a = a_in, b = b_in,
+                 a_aln = as.character(as.list(a_aln)),
+                 b_aln = as.character(as.list(b_aln)),
+                 score = final_score)
+
+  # and return it!
+  return(answer)
+}
+
+a <- char_vec("TATCTGCAACGA", prepend = "")
+b <- char_vec("TTGTGC", prepend = "")
+best <- global_aln_dp(a, b)
+print(best)
+
 
 
