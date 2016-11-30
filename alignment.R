@@ -226,7 +226,11 @@ plot(p)
 global_aln_dp <- function(a_in, b_in) {
   # create tables of the right size
   score <- matrix(0, nrow = length(b_in), ncol = length(a_in))
+  rownames(score) <- b_in
+  colnames(score) <- a_in
   from <- matrix("?", nrow = length(b_in), ncol = length(a_in))
+  rownames(from) <- b_in
+  colnames(from) <- a_in  
   
   # build gap scores along top row
   row <- 1
