@@ -223,12 +223,12 @@ plot(p)
 
 
 
-global_aln_dp <- function(a_in, b_in) {
+local_aln_dp <- function(a_in, b_in) {
   # create tables of the right size
   score <- matrix(0, nrow = length(b_in), ncol = length(a_in))
   rownames(score) <- b_in
   colnames(score) <- a_in
-  from <- matrix("?", nrow = length(b_in), ncol = length(a_in))
+  from <- matrix("stop", nrow = length(b_in), ncol = length(a_in))
   rownames(from) <- b_in
   colnames(from) <- a_in  
   
@@ -266,6 +266,10 @@ global_aln_dp <- function(a_in, b_in) {
         bestscore <- upscore
         bestfrom <- "up"
       }
+      if(bestscore < 0) {
+        bestscore <- 0
+        bestfrom <- "stop"
+      }
       
       score[row,col] <- bestscore
       from[row,col] <- bestfrom
@@ -273,16 +277,18 @@ global_aln_dp <- function(a_in, b_in) {
     }
   }
   
-  # start in the lower-right
-  currentrow <- nrow(score)
-  currentcol <- ncol(score)
+  # start at largest cell
+  bestcell <- which(score == max(score), arr.ind = TRUE)
+  currentrow <- bestcell[1,1]
+  currentcol <- bestcell[1,2]
+
   # we'll build our alignment in two stacks for convenience
   a_aln <- rstack()
   b_aln <- rstack()
   final_score <- score[currentrow, currentcol]
   
   # while we're not done....
-  while(currentrow != 1 & currentcol != 1) {
+  while(from[currentrow, currentcol] != "stop") {
     arrow <- from[currentrow, currentcol]
     if(arrow == "left") {
       a_aln <- insert_top(a_aln, a_in[currentcol])
@@ -317,7 +323,7 @@ global_aln_dp <- function(a_in, b_in) {
 
 a <- char_vec("TATCTGCAACGA", prepend = "")
 b <- char_vec("TTGTGC", prepend = "")
-best <- global_aln_dp(a, b)
+best <- local_aln_dp(a, b)
 print(best)
 
 
