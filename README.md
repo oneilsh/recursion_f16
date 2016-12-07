@@ -1,3 +1,41 @@
+## L-Systems (De. 7)
+
+Code: (Will update when posted)
+
+**Easyish question:** Devise a novel L-System (i.e., not one you found online) and interpret it with turtle graphics. 
+
+**Difficultish question:** Devise an L-System that draws a tree with leaves; no matter the number of productions of the system, the leaves should only occur, well, where leaves occur on real plants (not at branching points). Example, using `turtle_text("X")` to draw leaves:
+
+![Leafy L-System](http://teaching.cgrb.oregonstate.edu/CGRB/recursion_15/_images/lsys_leaves.png)
+
+Of course, your L-System doesn’t have to use the overall structure/shape of the above.
+
+## Recursive Turtle Drawing (Dec. 5)
+
+Code: https://github.com/oneilsh/recursion_f16/commit/3866e8d484c75a0df343ddf6bc61904251419499
+
+**Easyish question:** Modify the recursive `simple_tree()` function to utilize randomness in the angles and/or branch lengths. Make cool looking trees! (A function call like `runif(1,28,32))` returns a random uniform number between 28 and 32.)
+
+**Easyish question:** Try writing a "leaf" function that draws a leaf shape and returns the turtle to the point of the function call (so it is "embeddable"). It could be as simple as a small circle, or as complex as two or more Koch curves. Use this instead of doing nothing for the base case of `simple_tree()`.
+
+**Easyish question** or **Difficultish question** (depending on quality of result): The `draw_tree()` function works to draw a binary search tree, but the results are fairly ugly. Modify it so the result looks better. You may want to have the function parameterized by both branch size and angle, e.g. `draw_tree(t, branchsize = 5, branchangle = 30)`, so that both the branch lengths and branching angle get smaller toward the leaves (thereby making it easier to fit everything without overlapping).
+
+
+## Local Alignment (Dec. 2)
+
+Code: https://github.com/oneilsh/recursion_f16/commit/7fbf6ba708a80b596b5787b63cd9af4a01d463c5
+
+**Difficultish question:** The “end-gap-free” alignment problem is similar to local alignment, but more restricted; gaps that are aligned with the “ends” of sequences don’t count toward the alignment score. (This is useful for computing overlaps of reads as in an assembly process.) Here are some examples:
+
+![End Gap Examples](http://teaching.cgrb.oregonstate.edu/CGRB/recursion_15/_images/end_gap_free.png)
+
+The solution is a simple modification to the global alignment dynamic program. First, all entries for “base cases” are given a score of 0 (top row and left column). Then the table is filled out as normal using the same rules as for global alignment. The traceback starts, however, not in the lower-right corner, but in the largest-scoring cell anywhere along the last row or rightmost column. It stops when it reaches an entry somewhere in the first row or column. (If you want to see the end gaps in the alignment, you can also have the alignment start in the lower-right, proceed to the maximum cell on the lower-right border, follow the traceback, and then proceed to the upper-left.) Example:
+
+![End Gap Table](http://teaching.cgrb.oregonstate.edu/CGRB/recursion_15/_images/end_gap_free_table.png)
+
+Modify the global alignment code from class to perform an end-gap-free alignment, and test it with a few different sequences to see the results it produces. (Note: you may have to write a helper function that gets the row/col location of the maximum scoring cell in the last row and column.)
+
+**Difficultish Question:** See if you can come up with a solid proof that the local-alignment modification produces optimal local alignments. 
 
 
 ## Sequence Alignment, Dynamic Program (Nov. 30)
