@@ -6,7 +6,7 @@ Code: (Will update when posted)
 
 **Difficultish question:** Devise an L-System that draws a tree with leaves; no matter the number of productions of the system, the leaves should only occur, well, where leaves occur on real plants (not at branching points). Example, using `turtle_text("X")` to draw leaves:
 
-<img src="http://teaching.cgrb.oregonstate.edu/CGRB/recursion_15/_images/lsys_leaves.png" alt="Drawing" style="width: 200px;"/>
+<img src="http://teaching.cgrb.oregonstate.edu/CGRB/recursion_15/_images/lsys_leaves.png" alt="Drawing" width=200/>
 
 Of course, your L-System doesn’t have to use the overall structure/shape of the above.
 
