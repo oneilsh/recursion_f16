@@ -1,5 +1,10 @@
 ## L-Systems (Dec. 7)
 
+For more about L-Systems, check out [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf)
+
+For more about coding and natural systems in general, check out [The Nature of Code](http://natureofcode.com/) (most of which doesn't map very well at all to R, since it uses a graphics system that is highly dynamic).
+
+
 Code, L-Systems: https://github.com/oneilsh/recursion_f16/commit/1adf17d316a69efec5816a00417ec1423ddeed6a
 
 Modification for "s" and "l" symbols: https://github.com/oneilsh/recursion_f16/commit/e5c6421d95e2e77a129299f0b4f69978fad84046
