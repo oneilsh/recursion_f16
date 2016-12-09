@@ -1,6 +1,8 @@
 ## L-Systems (Dec. 7)
 
-Code: (Will update when posted)
+Code, L-Systems: https://github.com/oneilsh/recursion_f16/commit/1adf17d316a69efec5816a00417ec1423ddeed6a
+
+Modification for "s" and "l" symbols: https://github.com/oneilsh/recursion_f16/commit/e5c6421d95e2e77a129299f0b4f69978fad84046
 
 **Easyish question:** Devise a novel L-System (i.e., not one you found online) and interpret it with turtle graphics. 
 
