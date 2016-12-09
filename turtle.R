@@ -530,6 +530,10 @@ draw_sentence <- function(sentence, fsize, langle, rangle) {
       turtle_turn(rangle, "right")
     } else if(symbol == "-") {
       turtle_turn(langle, "left")
+    } else if(symbol == "s") {
+      fsize <- fsize * (2/3)
+    } else if(symbol == "l") {
+      fsize <- fsize / (2/3)
     } else if(symbol == "[") {
       pos_stack <- insert_top(pos_stack, turtle_getstate())
     } else if(symbol == "]") {
@@ -577,7 +581,7 @@ draw_sentence(sentence, 6, 30, 30)
 
 sentence <- "F"
 rules <- hash()
-rules[["F"]] <- char_vec("F[-F]F[+F]F")
+rules[["F"]] <- char_vec("Fs[l-Fs]F[l+Fs]Fl")
 
 for(i in seq(1, 4)) {
   sentence <- lproduce(sentence, rules)
@@ -588,7 +592,7 @@ turtle_init(mode = "clip")
 turtle_hide()
 turtle_setstate(c(50, 20, 0)) # x y angle
 
-draw_sentence(sentence, 6, 30, 30)
+draw_sentence(sentence, 2, 30, 30)
 
 
 
